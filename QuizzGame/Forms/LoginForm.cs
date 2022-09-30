@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using QuizGame.Classes;
-using QuizGame.Encryption;
 using QuizGame.Login;
 
 namespace QuizGame.Forms

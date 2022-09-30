@@ -59,6 +59,7 @@
             this.FirstLettersOfSongNameWords.Size = new System.Drawing.Size(386, 32);
             this.FirstLettersOfSongNameWords.TabIndex = 0;
             this.FirstLettersOfSongNameWords.Text = "First Letter of each word: S L T S";
+            this.FirstLettersOfSongNameWords.Click += new System.EventHandler(this.FirstLettersOfSongNameWords_Click);
             // 
             // NameOfArtist
             // 

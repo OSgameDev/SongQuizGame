@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using QuizGame.Classes;
+using QuizGame.Models;
+using QuizGame.Signup;
 
 namespace QuizGame.Forms
 {

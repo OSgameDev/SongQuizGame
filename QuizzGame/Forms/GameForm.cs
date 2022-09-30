@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using QuizGame.Classes;
+using QuizGame.Models;
+using QuizGame.SongListLoader;
 
 namespace QuizGame.Forms
 {
@@ -117,6 +118,11 @@ namespace QuizGame.Forms
         }
 
         private void ScoreLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FirstLettersOfSongNameWords_Click(object sender, EventArgs e)
         {
 
         }
