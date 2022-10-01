@@ -31,6 +31,7 @@ namespace QuizGame.Forms
                 LoginForm loginForm = new LoginForm();
                 loginForm.ShowDialog();
                 this.Dispose();
+                this.Close();
             }
             else
             {
@@ -43,6 +44,7 @@ namespace QuizGame.Forms
         private void Backbutton_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            this.Close();
         }
     }
 }

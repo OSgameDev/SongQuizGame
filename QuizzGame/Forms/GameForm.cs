@@ -11,18 +11,36 @@ namespace QuizGame.Forms
     {
         private LoadSongsFromLocalFile _songsLoader = new LoadSongsFromLocalFile(); 
 
-        private List<Song> _songs = new List<Song>();
+        private List<Song> _songsList = new List<Song>();
 
         private Song _currentSong;
 
-        private int _livesCounter = 2;
+        private Random _random = new Random();
+
         private int _songIndex = 0;
+        private int _generatedIndex = 0;
+        private int _livesCounter = 2;
         private int _scoreCounter = 0;
         private int _lostCounter = 0;
+
+        private bool _isLoadedFirstSong = false;
+        private bool _isWentBack = false;
 
         public GameForm()
         {
             InitializeComponent();
+        }
+
+        private void GameFinished()
+        {
+            FirstLettersOfSongNameWords.Text = "You have finished the game!";
+            FirstLettersOfSongNameWords.ForeColor = Color.Green;
+            FirstLettersOfSongNameWords.Location = new Point(150, 190);
+
+            NameOfArtist.Text = "";
+
+            SubmitButton.Visible = false;
+            SongGuess.Visible = false;
         }
 
         private string GetFirstLettersOfSongName()
@@ -42,37 +60,38 @@ namespace QuizGame.Forms
 
         private void LoadNewSong(int index)
         {
-            if (index > _songs.Count) return;
+            if(index == _generatedIndex && _isLoadedFirstSong)
+            {
+                GameFinished();
+                return;
+            }
 
-            _currentSong = _songs[index];
+            if(!_isWentBack && index >= _songsList.Count)
+            {
+                index = 0;
+                _songIndex = 0;
+                _isWentBack = true;
+            }
+
+            if (_isWentBack && index > _generatedIndex)
+            {
+                _generatedIndex -= 1;
+            }
+
+            _currentSong = _songsList[index];
 
             FirstLettersOfSongNameWords.Text = ($"First Letters of each word: {GetFirstLettersOfSongName()}");
             NameOfArtist.Text = ($"Name of artist: {_currentSong.ArtistName}");
-        }
 
-        #region (for testing) hide and show
-        private void HideAll()
-        {
-            SongGuess.Visible = false;
-            FirstLettersOfSongNameWords.Visible = false;
-            NameOfArtist.Visible = false;
-            SubmitButton.Visible = false;
+            _isLoadedFirstSong = true;
         }
-
-        private void ShowAll()
-        {
-            SongGuess.Visible = true;
-            FirstLettersOfSongNameWords.Visible = true;
-            NameOfArtist.Visible = true;
-            //SubmitButton.Visible = true;
-        }
-        #endregion
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            _songs = _songsLoader.LoadSongsToList();
+            _songsList = _songsLoader.LoadSongsToList();
 
-            _currentSong = _songs[_songIndex];
+            _generatedIndex = _random.Next(0, _songsList.Count - 1);
+            _songIndex = _generatedIndex;
 
             LoadNewSong(_songIndex);
         }

@@ -67,6 +67,10 @@ namespace QuizGame
             Environment.Exit(0);
         }
 
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {

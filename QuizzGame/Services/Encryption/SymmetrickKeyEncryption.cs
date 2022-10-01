@@ -13,16 +13,6 @@ namespace QuizGame.Encryption
 
         private const int DerivationIterations = 1000;
 
-        private static byte[] Generate256BitsOfRandomEntropy()
-        {
-            var randomBytes = new byte[32]; 
-            using (var rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetBytes(randomBytes);
-            }
-            return randomBytes;
-        }
-
         public string Encrypt(string plainText, string key)
         {
             byte[] iv = new byte[16];

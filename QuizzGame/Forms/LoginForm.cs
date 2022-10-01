@@ -44,11 +44,13 @@ namespace QuizGame.Forms
             gameForm.ShowDialog();
 
             this.Dispose();
+            this.Close();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            this.Close();
         }
     }
 }
